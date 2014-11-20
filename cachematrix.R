@@ -1,6 +1,6 @@
-## This function takes a matrix as parameter and 1) set the value of the matrix 
-## 2) get the vlaue of the matrix 3)set the value of the inverted matrix and 4) 
-## the value of the inverted matrix. 
+## This function takes a matrix as parameter and 1) sets the value of the matrix 
+## 2) gets the value of the matrix 3)set the value of the inverted matrix and 4)  
+## gets the value of the inverted matrix. 
 ## functions do
 
 ## Write a short comment describing this function
@@ -8,11 +8,11 @@
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
   set <- function(y){
-    x <<- y
+    x <<- y  ##assign the value to an external environment variable for caching purposes
     m <<- NULL
   }
   get <- function() x
-  setinv <- function(ginv) m <<- ginv
+  setinv <- function(ginv) m <<- ginv  ##assign the inverted matrix value to an external environment variable m for caching purposes
   getinv <- function() m
   list(set = set, get = get,
        setinv = setinv,
@@ -29,6 +29,7 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
   m <- x$getinv()
+  ## Check to see if the inverted matrix value is already cached
   if(!is.null(m)){
     message("getting cache data")
     return(m)
